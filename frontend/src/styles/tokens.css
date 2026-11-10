@@ -1,0 +1,131 @@
+/* ============================================================================
+   UOL — Design Tokens (capability `design-tokens`)
+   Fonte: AGENTS.md §5 · baseado em uol.com.br.
+   Única fonte de verdade de cor/tipografia — consumida pelo Tailwind.
+   NÃO hardcode hex nos componentes: use var(--token) ou as classes de tema.
+   ========================================================================== */
+
+/* ---- Fontes (fallback pronto: layout nunca depende da fonte remota) ---- */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url('https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuLyfMZhrib2Bg-4.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('https://fonts.gstatic.com/s/jetbrainsmono/v24/tDbY2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKxTOlOVgaY.woff2') format('woff2');
+}
+
+:root {
+  /* ---- Paleta de marca (§5.1) ---- */
+  --uol-red: #cb0003;
+  --uol-red-dark: #a30002;
+  --uol-orange: #ed5709;
+  --uol-blue: #005fff;
+  --uol-yellow: #ffce00; /* sempre com texto preto #000000 */
+
+  /* ---- Cores por editoria (§5.2) — as cinco fixas da sprint ---- */
+  --ed-noticias: #cb0003;       /* Notícias / Geral */
+  --ed-esportes: #005fff;       /* Esportes */
+  --ed-economia: #1f7a1f;       /* Economia */
+  --ed-entretenimento: #ed5709; /* Entretenimento */
+  --ed-tecnologia: #6a1b9a;     /* Tecnologia */
+
+  /* ---- Superfícies / texto (light) (§5.4) ---- */
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --surface-2: #f2f2f2;
+  --text: #212529;
+  --muted: #6c757d;
+  --ink: #000000;
+  --border: #e6e6e6;
+
+  /* ---- Tipografia (§5.3) ---- */
+  --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  color-scheme: light;
+}
+
+/* ---- Tema dark automático (prefers-color-scheme), salvo override manual ---- */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --bg: #0d0d0f;
+    --surface: #161618;
+    --surface-2: #1d1d21;
+    --text: #e8e8ea;
+    --muted: #a1a1a8;
+    --ink: #ffffff;
+    --border: #2a2a30;
+    color-scheme: dark;
+  }
+}
+
+/* ---- Override manual explícito (toggle persistido) ---- */
+[data-theme='dark'] {
+  --bg: #0d0d0f;
+  --surface: #161618;
+  --surface-2: #1d1d21;
+  --text: #e8e8ea;
+  --muted: #a1a1a8;
+  --ink: #ffffff;
+  --border: #2a2a30;
+  color-scheme: dark;
+}
+
+[data-theme='light'] {
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --surface-2: #f2f2f2;
+  --text: #212529;
+  --muted: #6c757d;
+  --ink: #000000;
+  --border: #e6e6e6;
+  color-scheme: light;
+}
+
+/* ---- Base ---- */
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---- Regra dura: amarelo SEMPRE com texto preto (§5.1) ---- */
+.badge-premium,
+.text-on-yellow {
+  background: var(--uol-yellow);
+  color: #000000;
+}
+
+/* ---- Foco visível e navegável por teclado (a11y) ---- */
+:focus-visible {
+  outline: 2px solid var(--uol-blue);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ---- Respeita usuários sensíveis a movimento (§5.5 / anti-patterns) ---- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

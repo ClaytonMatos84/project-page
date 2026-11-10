@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<!-- =============================================================================
+     GOLD STANDARD — Card de notícia UOL (referência para todos os agentes)
+     Demonstra: kicker de editoria, selo premium (contraste correto), card,
+     botão primário, foco visível, semântica e uso de design tokens.
+     NÃO é para copiar cores avulsas: use os tokens (var(--...)).
+     ========================================================================== -->
+<html lang="pt-BR" data-theme="light">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Gabarito — Card UOL</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="./design-tokens.css" />
+<style>
+  body {
+    margin: 0; padding: 32px; background: var(--bg-mobile);
+    font-family: var(--font-body); color: var(--text);
+  }
+  .grid { display: grid; gap: var(--sp-5); grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); max-width: 720px; margin: 0 auto; }
+
+  /* --- Card de referência --- */
+  .card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--r-sm); overflow: hidden; display: flex; flex-direction: column;
+    box-shadow: var(--shadow); transition: transform .15s ease, box-shadow .15s ease;
+  }
+  .card:hover, .card:focus-within { transform: translateY(-3px); }
+  .card__media {
+    height: 150px; position: relative;
+    background: linear-gradient(135deg, var(--uol-red), var(--uol-orange)); /* família de marca */
+  }
+  .card__badges { position: absolute; top: var(--sp-2); left: var(--sp-2); display: flex; gap: 6px; }
+
+  /* Kicker de editoria */
+  .kicker {
+    font-family: var(--font-display); font-size: 10.5px; font-weight: 800;
+    letter-spacing: .8px; text-transform: uppercase; color: var(--uol-red);
+  }
+  .tag {
+    display: inline-block; font-family: var(--font-display); font-size: 10.5px; font-weight: 800;
+    letter-spacing: .6px; text-transform: uppercase; color: #fff;
+    background: var(--uol-red); padding: 4px 9px; border-radius: var(--r-xs);
+  }
+
+  /* Selo premium — SEMPRE texto preto sobre amarelo (contraste AA) */
+  .premium {
+    display: inline-flex; align-items: center; gap: 5px;
+    background: var(--uol-gold); color: #000;
+    font-family: var(--font-display); font-size: 10px; font-weight: 800;
+    letter-spacing: .2px; text-transform: uppercase;
+    padding: 4px 8px; border-radius: var(--r-xs);
+  }
+  .premium svg { width: 10px; height: 10px; }
+
+  .card__body { padding: var(--sp-3) var(--sp-4) var(--sp-4); display: flex; flex-direction: column; gap: 7px; }
+  .card__title {
+    margin: 0; font-family: var(--font-display); font-size: var(--fs-16);
+    font-weight: 800; line-height: 1.3; letter-spacing: -.3px; color: var(--ink);
+  }
+  .card__title a { color: inherit; text-decoration: none; }
+  .card__title a:focus-visible { outline: 2px solid var(--uol-red); outline-offset: 3px; border-radius: 3px; }
+  .card__summary { margin: 0; font-size: 13.5px; color: var(--text-muted); flex: 1; }
+  .card__meta { font-size: 12px; color: var(--text-faint); display: flex; gap: 8px; align-items: center; }
+  .dot { width: 3px; height: 3px; border-radius: 50%; background: currentColor; opacity: .6; }
+
+  /* Botão primário — única ação em vermelho */
+  .btn {
+    align-self: flex-start; margin-top: 6px;
+    background: var(--uol-red); color: #fff; border: 0;
+    padding: 10px 16px; border-radius: var(--r-pill);
+    font-family: var(--font-display); font-weight: 800; font-size: 13px;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn:hover { background: var(--uol-red-dark); }
+  .btn:focus-visible { outline: 2px solid var(--uol-red); outline-offset: 3px; }
+
+  /* Respeita usuários sensíveis a movimento */
+  @media (prefers-reduced-motion: reduce) {
+    .card { transition: none; }
+    .card:hover, .card:focus-within { transform: none; }
+  }
+</style>
+</head>
+<body>
+  <div class="grid">
+    <!-- Card 1: padrão -->
+    <article class="card">
+      <div class="card__media">
+        <div class="card__badges"><span class="tag">Brasil</span></div>
+      </div>
+      <div class="card__body">
+        <span class="kicker" style="color: var(--ed-brasil)">Brasil</span>
+        <h3 class="card__title"><a href="#">Governo anuncia pacote de investimentos em infraestrutura urbana</a></h3>
+        <p class="card__summary">Recursos para mobilidade, saneamento e iluminação pública nas capitais.</p>
+        <div class="card__meta">Redação UOL <span class="dot"></span> 09/11/2026 · 08h42</div>
+        <a class="btn" href="#">Ler matéria
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </article>
+
+    <!-- Card 2: com premium (amarelo + texto preto) -->
+    <article class="card">
+      <div class="card__media">
+        <div class="card__badges">
+          <span class="tag" style="background: var(--ed-economia)">Economia</span>
+          <span class="premium">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.7-5.2 4.6 1.5 6.8L12 17.8 5.9 20.4l1.5-6.8L2.2 9l6.9-.7z"/></svg>
+            Assinantes
+          </span>
+        </div>
+      </div>
+      <div class="card__body">
+        <span class="kicker" style="color: var(--ed-economia)">Economia</span>
+        <h3 class="card__title"><a href="#">Inflação desacelera e mercado revisa projeções para o trimestre</a></h3>
+        <p class="card__summary">Terceira queda consecutiva é puxada por alimentos e combustíveis.</p>
+        <div class="card__meta">Ana Ribeiro <span class="dot"></span> 09/11/2026 · 07h15</div>
+        <a class="btn" href="#">Ler matéria
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </article>
+  </div>
+</body>
+</html>

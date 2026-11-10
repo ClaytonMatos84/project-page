@@ -1,0 +1,103 @@
+/* ============================================================================
+   UOL — Design Tokens (canônico)
+   Fonte: AGENTS.md §2 · baseado em uol.com.br, Manual da Marca UOL e Brandfetch.
+   COPIE estes tokens; NÃO invente cores/medidas fora daqui.
+   ========================================================================== */
+
+/* Fontes (com fallback — layout nunca depende da fonte remota) */
+@font-face {
+  font-family: "UOLText";
+  src: url("https://stc.uol.com/c/webfont/projeto-grafico/uol-font/uol-text-regular.woff2?v5") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "UOLText";
+  src: url("https://stc.uol.com/c/webfont/projeto-grafico/uol-font/uol-text-bold.woff2?v5") format("woff2");
+  font-weight: 700;
+  font-display: swap;
+}
+
+:root {
+  /* ---- Cores de marca (oficiais) ---- */
+  --uol-red: #cb0003;        /* ação primária / kicker / ao vivo / curtir */
+  --uol-red-dark: #a30002;   /* hover do vermelho */
+  --uol-orange: #ed5709;     /* acento secundário / economia */
+  --uol-blue: #005fff;       /* links informativos / política */
+  --uol-gold: #ffce00;       /* EXCLUSIVO premium — texto preto por cima */
+
+  /* ---- Neutros ---- */
+  --ink: #000000;            /* manchetes */
+  --text: #212529;           /* corpo */
+  --text-muted: #6c757d;     /* metadados */
+  --text-faint: #999999;     /* timestamps / placeholders */
+  --bg: #ffffff;             /* fundo */
+  --bg-mobile: #f2f2f2;      /* fundo mobile / superfície */
+  --surface: #ffffff;        /* cards */
+  --surface-2: #f2f2f2;      /* superfícies alternativas */
+  --border: #e6e6e6;         /* divisores / bordas */
+  --divider-strong: #4d4d4d; /* borda em tema escuro */
+
+  /* ---- Semânticas ---- */
+  --danger: #d5150b;         /* erro de formulário */
+  --warning: #e39d03;        /* aviso */
+
+  /* ---- Acentos por editoria (convenção de projeto) ---- */
+  --ed-brasil: #cb0003;
+  --ed-politica: #005fff;
+  --ed-economia: #ed5709;
+  --ed-esportes: #0a7b3e;
+  --ed-tecnologia: #6a2be2;
+  --ed-entretenimento: #d6008f;
+  --ed-mundo: #0f766e;
+
+  /* ---- Tipografia ---- */
+  --font-display: "Montserrat", system-ui, sans-serif;
+  --font-body: "UOLText", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  --font-mono: "SFMono-Regular", Menlo, Consolas, monospace;
+
+  --fs-12: 12px; --fs-13: 13px; --fs-14: 14px; --fs-16: 16px;
+  --fs-18: 18px; --fs-22: 22px; --fs-26: 26px; --fs-32: 32px; --fs-40: 40px;
+
+  /* ---- Espaçamento (grid 5px) ---- */
+  --sp-1: 5px; --sp-2: 10px; --sp-3: 15px; --sp-4: 20px;
+  --sp-5: 24px; --sp-6: 30px; --sp-7: 40px; --sp-8: 56px; --sp-9: 64px;
+
+  /* ---- Raios ---- */
+  --r-xs: 4px; --r-sm: 8px; --r-md: 12px; --r-lg: 16px; --r-pill: 999px;
+
+  /* ---- Elevação ---- */
+  --shadow: 0 1px 2px rgba(0, 0, 0, .05), 0 12px 30px rgba(0, 0, 0, .08);
+
+  /* ---- Layout ---- */
+  --container: 1200px;
+  --container-narrow: 780px;
+}
+
+/* Tema escuro (mantém vermelho como cor de AÇÃO, mais claro p/ contraste) */
+html[data-theme="dark"] {
+  --ink: #ffffff;
+  --text: #e8e8ea;
+  --text-muted: #a1a1a8;
+  --text-faint: #77777e;
+  --bg: #0d0d0f;
+  --bg-mobile: #0d0d0f;
+  --surface: #161618;
+  --surface-2: #1d1d21;
+  --border: #2a2a30;
+  --divider-strong: #4d4d4d;
+  --uol-red: #ff3b3f;        /* vermelho de AÇÃO no escuro */
+  --uol-red-dark: #d81f23;
+  --uol-orange: #ff6a2b;
+  --uol-blue: #4b8bff;
+  --shadow: 0 1px 3px rgba(0, 0, 0, .5), 0 16px 40px rgba(0, 0, 0, .4);
+}
+
+/* ----------------------------------------------------------------------------
+   Uso correto:
+     color: var(--uol-red);            ✅
+     color: #cb0003;                   ⚠️  só se não houver token; prefira a var
+     color: #0a3d91;  / #ffd400;       ❌  paleta errada/antiga
+     background: var(--uol-gold); color: #000;  ✅ premium
+     background: var(--uol-gold); color: #fff;  ❌ contraste falha
+---------------------------------------------------------------------------- */

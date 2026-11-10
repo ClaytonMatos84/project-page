@@ -1,0 +1,21 @@
+{
+  "name": "uol-sprint",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Sprint UOL — foundation (api-convention + design-tokens)",
+  "workspaces": [
+    "shared",
+    "backend",
+    "frontend"
+  ],
+  "scripts": {
+    "dev:backend": "npm run dev --workspace @uol/backend",
+    "dev:frontend": "npm run dev --workspace @uol/frontend",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "qa": "node qa/scripts/smoke.mjs",
+    "qa:portal": "node qa/scripts/portal-smoke.mjs",
+    "qa:a11y": "node qa/scripts/portal-a11y.mjs",
+    "qa:flash": "node qa/scripts/flash-smoke.mjs",
+    "qa:flash:a11y": "node qa/scripts/flash-a11y.mjs"
+  }
+}

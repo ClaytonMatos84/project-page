@@ -1,0 +1,4 @@
+node_modules/
+qa/evidence/
+frontend/dist/
+few-shots/*.pdf
