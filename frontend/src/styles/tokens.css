@@ -30,6 +30,11 @@
   --uol-blue: #005fff;
   --uol-yellow: #ffce00; /* sempre com texto preto #000000 */
 
+  /* ---- Texto em cor de marca com contraste AA em ambos os temas (§5.2:
+     ajuste de matiz para contraste, mantendo a família de marca) ---- */
+  --uol-red-text: #cb0003;
+  --uol-blue-text: #005fff;
+
   /* ---- Cores por editoria (§5.2) — as cinco fixas da sprint ---- */
   --ed-noticias: #cb0003;       /* Notícias / Geral */
   --ed-esportes: #005fff;       /* Esportes */
@@ -63,6 +68,8 @@
     --muted: #a1a1a8;
     --ink: #ffffff;
     --border: #2a2a30;
+    --uol-red-text: #ff6b6e;
+    --uol-blue-text: #5c9dff;
     color-scheme: dark;
   }
 }
@@ -76,6 +83,8 @@
   --muted: #a1a1a8;
   --ink: #ffffff;
   --border: #2a2a30;
+  --uol-red-text: #ff6b6e;
+  --uol-blue-text: #5c9dff;
   color-scheme: dark;
 }
 
@@ -87,6 +96,8 @@
   --muted: #6c757d;
   --ink: #000000;
   --border: #e6e6e6;
+  --uol-red-text: #cb0003;
+  --uol-blue-text: #005fff;
   color-scheme: light;
 }
 

@@ -16,6 +16,8 @@
     "qa:portal": "node qa/scripts/portal-smoke.mjs",
     "qa:a11y": "node qa/scripts/portal-a11y.mjs",
     "qa:flash": "node qa/scripts/flash-smoke.mjs",
-    "qa:flash:a11y": "node qa/scripts/flash-a11y.mjs"
+    "qa:flash:a11y": "node qa/scripts/flash-a11y.mjs",
+    "qa:chat": "node qa/scripts/chat-smoke.mjs",
+    "qa:chat:a11y": "node qa/scripts/chat-a11y.mjs"
   }
 }

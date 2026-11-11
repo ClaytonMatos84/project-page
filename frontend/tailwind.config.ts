@@ -17,6 +17,8 @@ const config: Config = {
           orange: 'var(--uol-orange)',
           blue: 'var(--uol-blue)',
           yellow: 'var(--uol-yellow)',
+          'red-text': 'var(--uol-red-text)',
+          'blue-text': 'var(--uol-blue-text)',
         },
         bg: 'var(--bg)',
         surface: {

@@ -5,6 +5,7 @@ import { errorHandler, notFoundHandler } from './errors';
 import { healthRouter } from './routes/health';
 import { portalRouter } from './routes/portal';
 import { flashRouter } from './routes/flash';
+import { chatRouter } from './routes/chat';
 
 /**
  * Monta o app Express da sprint.
@@ -39,6 +40,9 @@ export function createApp(): Express {
 
   // Rotas de produto — UOL Flash Short (§3.2).
   app.use(flashRouter);
+
+  // Rotas de produto — Bate-Papo UOL Next-Gen (§3.3).
+  app.use(chatRouter);
 
   app.use(notFoundHandler);
   app.use(errorHandler);

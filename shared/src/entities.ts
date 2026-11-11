@@ -87,11 +87,25 @@ export interface Reaction {
   updatedAt: string;
 }
 
+/**
+ * Ações canônicas do Bate-Papo UOL clássico (§3.3 / decisão de design 6).
+ * O servidor NÃO transforma o texto — a renderização (caixa alta, itálico) é da UI.
+ */
+export type ChatAction = 'fala para' | 'grita com' | 'sussurra para' | 'concorda com';
+
+/** Set canônico de reações por mensagem (decisão de design 7). */
+export type ReactionEmoji = '👍' | '😂' | '❤️';
+
 export interface Room {
   id: string;
   name: string;
+  /** Evento ao vivo em destaque no banner da sala. */
   topic: string;
   online: number;
+  /** Lotação da sala — visual-only (decisão de design 8: sem `400 ROOM_FULL`). */
+  capacity: number;
+  /** Acento de editoria da sala (§5.2). */
+  color: string;
   createdAt: string;
 }
 
@@ -99,12 +113,37 @@ export interface Message {
   id: string;
   roomId: string;
   author: string;
+  action: ChatAction;
+  /** `Todos` ou nick presente na sala. */
+  recipient: string;
   text: string;
+  /** Reservada: filtrada no servidor — só o par autor/destinatário a vê. */
+  isPrivate: boolean;
+  /** Contadores por emoji do set canônico (`ReactionEmoji` -> total). */
+  reactions: Record<string, number>;
   createdAt: string;
 }
 
+/** Presença por apelido (decisão de design 2): TTL de 10s refrescado pelo polling. */
 export interface Presence {
   roomId: string;
+  nick: string;
+  lastSeenAt: string;
+}
+
+/** Resposta do `POST /api/chat/rooms/:id/enter`. */
+export interface EnterResult {
+  roomId: string;
+  nick: string;
   online: number;
-  updatedAt: string;
+  participants: string[];
+}
+
+/**
+ * Resposta do `GET /api/chat/rooms/:id/messages` — participantes piggyback
+ * (decisão de design 9): um único poll dirige o feed e a lista de nicks.
+ */
+export interface RoomFeed {
+  messages: Message[];
+  participants: string[];
 }

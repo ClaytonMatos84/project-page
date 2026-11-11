@@ -33,6 +33,21 @@ Dono: `@qa-demo`. Independente de quem escreveu o código (§7).
 | 4.6 | A11y — teclado, focus trap, `aria-live` seletivo, contraste AA (amarelo + preto) | [`scenarios/flash-a11y.md`](./scenarios/flash-a11y.md) | `flash-frontend-core` / `design-tokens` |
 | 4.7 | Evidências + roteiro de demo ponta-a-ponta | [`scenarios/flash-demo.md`](./scenarios/flash-demo.md) | `flash-frontend-core` |
 
+### Bate-Papo UOL Next-Gen (`add-bate-papo`)
+
+| ID | Cenário | Arquivo | Spec |
+| -- | ------- | ------- | ---- |
+| 4.1 | Listagem de salas com lotação ("35/40") + envelope `{ data, meta }` com telemetria em tudo, inclusive erro | [`scenarios/chat-rooms-envelope.md`](./scenarios/chat-rooms-envelope.md) | `chat-rooms` / `api-convention` |
+| 4.2 | Entrada `200` (nick em `participants`, `online` incrementado), `400` apelido em uso/inválido, `404` sala | [`scenarios/chat-enter.md`](./scenarios/chat-enter.md) | `chat-presence` |
+| 4.3 | Presença por TTL — nick some de `participants` após >10s sem sinal; re-entrada automática ao retomar o foco | [`scenarios/chat-presence-ttl.md`](./scenarios/chat-presence-ttl.md) | `chat-presence` / `chat-frontend-core` |
+| 4.4 | Envio `201` (mensagem no feed), `400` ação inválida / reservada para `Todos` / destinatário ausente / texto fora de 1–500, `404` sala | [`scenarios/chat-messages.md`](./scenarios/chat-messages.md) | `chat-messages` |
+| 4.5 | Reservadas visíveis só ao par autor/destinatário; terceiro não vê; renderização amarela + texto preto + badge | [`scenarios/chat-private-filter.md`](./scenarios/chat-private-filter.md) | `chat-messages` |
+| 4.6 | Reação `200` com contador incrementado, `400` emoji fora do set, `404` mensagem, dedup `localStorage` na UI | [`scenarios/chat-reactions.md`](./scenarios/chat-reactions.md) | `chat-reactions` |
+| 4.7 | Polling de 3s com cleanup (2 pollers, pausa com aba oculta) + navegação bidirecional | [`scenarios/chat-polling-nav.md`](./scenarios/chat-polling-nav.md) | `chat-frontend-core` |
+| 4.8 | A11y — `role="log"` no feed, `aria-live` no contador online, teclado no composer/modal, contraste AA em dark e light | [`scenarios/chat-a11y.md`](./scenarios/chat-a11y.md) | `chat-frontend-core` / `design-tokens` |
+| 4.9 | Evidências + roteiro de demo ponta-a-ponta | [`scenarios/chat-demo.md`](./scenarios/chat-demo.md) | `chat-frontend-core` |
+| 5.2 | Tela inicial com cards, entrada só após seleção e saída explícita (`/leave`) | [`scenarios/chat-leave.md`](./scenarios/chat-leave.md) | `chat-frontend-core` / `chat-presence` |
+
 ## Execução automatizada
 
 ```bash
@@ -51,6 +66,11 @@ node qa/scripts/portal-a11y.mjs
 node qa/scripts/flash-smoke.mjs       # BASE_URL=http://localhost:3001
 node qa/scripts/flash-a11y.mjs
 # (ou: npm run qa:flash / npm run qa:flash:a11y)
+
+# add-bate-papo — contrato HTTP (4.1..4.6 + 5.2 saída, inclui espera de TTL ~11s) e a11y (4.7/4.8):
+node qa/scripts/chat-smoke.mjs        # BASE_URL=http://localhost:3001
+node qa/scripts/chat-a11y.mjs
+# (ou: npm run qa:chat / npm run qa:chat:a11y)
 ```
 
 Ambos os scripts saem com código `≠ 0` quando um cenário falha, imprimindo a evidência.

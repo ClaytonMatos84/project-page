@@ -70,6 +70,13 @@ export function Header() {
           >
             Flash
           </NavLink>
+          <NavLink
+            to="/bate-papo"
+            className={`${navItemClass} border-l border-border px-3 font-extrabold text-brand-red`}
+            aria-label="Ir para o Bate-Papo UOL"
+          >
+            Bate-Papo
+          </NavLink>
         </nav>
       </div>
     </header>
